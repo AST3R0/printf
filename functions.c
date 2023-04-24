@@ -44,10 +44,12 @@ int print_string(va_list types, char buffer[],
 	UNUSED(size);
 	if (str ==  NULL)
 	{
-		str = "(nil)";
+		str = "(null)";
 		if (precision >= 6)
 			str = " ";
 	}
+	if (precision >= 0 && precision < length)
+		length = precision;
 	while (str[length] != '\0')
 		length++;
 	if (width > length)
