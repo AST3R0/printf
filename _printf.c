@@ -4,24 +4,24 @@ void print_buffer(char buffer[], int *buff_ind);
 
 /**
  * _printf - Print function
- * @fomrat: format.
+ * @format: format.
  * Return: Printed char.
  */
-int _printf(const char *fomrat, ...)
+int _printf(const char *format, ...)
 {
 	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
 
-	if (fomrat == NULL)
+	if (format == NULL)
 		return (-1);
-	va_start(list, fomrat);
-	for (i = 0; fomrat && fomrat[i] != '\0'; i++)
+	va_start(list, format);
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (fomrat[i] != '%')
+		if (format[i] != '%')
 		{
-			buffer[buff_ind++] = fomrat[i];
+			buffer[buff_ind++] = format[i];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
 			printed_chars++;
@@ -29,12 +29,12 @@ int _printf(const char *fomrat, ...)
 		else
 		{
 			print_buffer(buffer, &buff_ind);
-			flags = get_flags(fomrat, &i);
-			width = get_width(fomrat, &i, list);
-			precision = get_precision(fomrat, &i, list);
-			size = get_size(fomrat, &i);
+			flags = get_flags(format, &i);
+			width = get_width(format, &i, list);
+			precision = get_precision(format, &i, list);
+			size = get_size(format, &i);
 			++i;
-			printed = handle_print(fomrat, &i, list, buffer,
+			printed = handle_print(format, &i, list, buffer,
 					flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
