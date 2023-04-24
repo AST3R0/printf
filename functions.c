@@ -48,7 +48,7 @@ int print_string(va_list types, char buffer[],
 		if (precision >= 6)
 			str = " ";
 	}
-	while (str[length] != "\0")
+	while (str[length] != '\0')
 		length++;
 	if (width > length)
 	{
@@ -108,14 +108,14 @@ int print_int(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
-	itn is_negative = 0;
-	long int n = va_agr(types, long int);
+	int is_negative = 0;
+	long int n = va_arg(types, long int);
 	unsigned long int num;
 
 	n = convert_size_number(n, size);
 	if (n == 0)
-		buffer[i--] = "0";
-	buffer[BUFF_SIZE - 1] = "\0";
+		buffer[i--] = '0';
+	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
 	if (n < 0)
 	{
@@ -124,7 +124,7 @@ int print_int(va_list types, char buffer[],
 	}
 	while (num > 0)
 	{
-		buffer[i--] = (num % 10) + "0";
+		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
 	i++;

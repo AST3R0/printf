@@ -9,7 +9,7 @@ void print_buffer(char buffer[], int *buff_ind);
  */
 int _printf(const char *fomrat, ...)
 {
-	int i, printed = 0, printed_char = 0;
+	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
@@ -17,9 +17,9 @@ int _printf(const char *fomrat, ...)
 	if (fomrat == NULL)
 		return (-1);
 	va_start(list, fomrat);
-	for (i = 0; fomrat && fomrat[i] != "\0"; i++)
+	for (i = 0; fomrat && fomrat[i] != '\0'; i++)
 	{
-		if (fomrat[i] != " % ")
+		if (fomrat[i] != '%')
 		{
 			buffer[buff_ind++] = fomrat[i];
 			if (buff_ind == BUFF_SIZE)
